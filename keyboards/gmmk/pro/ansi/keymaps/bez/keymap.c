@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum my_keycodes {
     KC_MISSION_CONTROL = SAFE_RANGE,
     KC_LAUNCHPAD
-}
+};
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -77,9 +77,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #endif // ENCODER_ENABLE
 
 // copied straight from https://github.com/qmk/qmk_firmware/issues/10111#issuecomment-850783107
-bool process_record_user(uint16_t keycode, uint16_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        
         case KC_MISSION_CONTROL:
             if (record->event.pressed) {
                 host_consumer_send(0x29F);
