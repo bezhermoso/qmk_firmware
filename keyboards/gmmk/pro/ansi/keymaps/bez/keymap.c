@@ -17,7 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 enum my_keycodes {
+    // Mission Control
     KC_MCTRL = SAFE_RANGE,
+    // Launchpad
     KC_LPAD
 };
 
@@ -81,6 +83,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_MCTRL:
             if (record->event.pressed) {
+                // Mission Control signal
                 host_consumer_send(0x29F);
             } else {
                 host_consumer_send(0);
@@ -89,6 +92,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case KC_LPAD:
             if (record->event.pressed) {
+                // Launchpad signal
                 host_consumer_send(0x2A0);
             } else {
                 host_consumer_send(0);
